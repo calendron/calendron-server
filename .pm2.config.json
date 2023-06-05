@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "Lochunt_Api_Server",
+            "name": "Calendron_Server",
             "script": "npm",
             "args": "start"
         }
