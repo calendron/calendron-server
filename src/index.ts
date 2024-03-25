@@ -1,11 +1,9 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotnev from 'dotenv';
+import config from './config/index';
+dotnev.config();
+
 import app from './app';
-import db from './config/db';
-import config from './config';
 
-db.connectDB();
-
-app.listen(config.PORT, () => {
-  console.log(`🚀 Server is running on port ${config.PORT}`);
+app.listen(config.SERVER_PORT, () => {
+  console.log(`Server is running on port ${config.SERVER_PORT}`);
 });

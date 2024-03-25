@@ -1,9 +1,20 @@
 import { Router } from 'express';
-import { login, register } from '../controllers/index.controller';
+import { login, logout, register } from '../controllers/auth.controller';
+import { loginValidator, registerValidator } from '../validator/auth.validator';
+import { validate } from '../validator/validate';
+import { authMiddleware } from '../middleware/auth.middlware';
 
-const authRouter = Router();
+const router = Router();
 
-authRouter.route('/login').post(login);
-authRouter.route('/register').post(register);
+router.route('/login').post(loginValidator(), validate, login);
+router.route('/register').post(registerValidator(), validate, register);
+router
+  .route('/logout')
+  .post(authMiddleware, logout)
+  .get(authMiddleware, logout);
+router
+  .route('/logout/all')
+  .post(authMiddleware, logout)
+  .get(authMiddleware, logout);
 
-export default authRouter;
+export default router;

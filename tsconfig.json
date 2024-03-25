@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "outDir": "build",
+    "sourceMap": true,
+    "target": "esnext",
     "module": "commonjs",
-    "lib": ["es6"],
-    "outDir": "./build",
-    "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "rootDir": "./src"
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules"]
 }

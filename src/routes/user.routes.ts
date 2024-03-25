@@ -1,13 +1,9 @@
 import { Router } from 'express';
-import {
-  getUserDetails,
-  getUserDetailsById,
-  updateUserDetails,
-} from '../controllers/index.controller';
+import { authMiddleware } from '../middleware/auth.middlware';
+import { whoAmI } from '../controllers/user.controller';
 
-const userRouter = Router();
+const router = Router();
 
-userRouter.route('/').get(getUserDetails).put(updateUserDetails);
-userRouter.route('/:id').get(getUserDetailsById);
+router.route('/whoami').get(authMiddleware, whoAmI);
 
-export default userRouter;
+export default router;

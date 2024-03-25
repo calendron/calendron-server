@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import eventsRouter from './event.routes';
-import usersRouter from './user.routes';
+import healthRouter from './health.routes';
 import authRouter from './auth.routes';
+import userRouter from './user.routes';
 
-const routes = Router();
+const router = Router();
 
-routes.use('/events', eventsRouter);
-routes.use('/users', usersRouter);
-routes.use('/auth', authRouter);
+router.use('/health', healthRouter);
+router.use('/auth', authRouter);
+router.use('/users', userRouter);
 
-export default routes;
+export default router;
