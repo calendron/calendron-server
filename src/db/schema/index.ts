@@ -1,10 +1,10 @@
 export * from './users';
 export * from './profiles';
 export * from './sessions';
-export * from './events';
-export * from './event_location';
-export * from './availabilities';
-export * from './weekly_schedules';
-export * from './weekly_schedules_slots';
-export * from './date_overrides_slots';
-export * from './bookings';
+// export * from './events';
+// export * from './event_location';
+// export * from './availabilities';
+// export * from './weekly_schedules';
+// export * from './weekly_schedules_slots';
+// export * from './date_overrides_slots';
+// export * from './bookings';

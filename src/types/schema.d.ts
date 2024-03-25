@@ -20,11 +20,12 @@ export type BrowserData = {
 };
 
 type User = {
-  email: string;
   id: number;
   uuid: string | null;
+  email: string;
   password: string;
   role: 'super_admin' | 'admin' | 'user';
+  status: 'active' | 'inactive' | 'suspended' | 'banned';
   emailVerified: boolean;
   emailVerifiedAt: Date | null;
   deleted: boolean;

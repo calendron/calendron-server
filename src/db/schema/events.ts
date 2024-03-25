@@ -10,6 +10,7 @@ import {
 } from 'drizzle-orm/pg-core';
 import { eventLocation } from './event_location';
 import { users } from './users';
+import { relations } from 'drizzle-orm';
 
 export const eventsStatusEnum = pgEnum('events_status_enum', [
   'active',
@@ -44,3 +45,14 @@ export const events = pgTable('events', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow()
 });
+
+export const eventsRelations = relations(events, ({ one }) => ({
+  user: one(users, {
+    fields: [events.userId],
+    references: [users.id]
+  }),
+  location: one(eventLocation, {
+    fields: [events.locatiom],
+    references: [eventLocation.id]
+  })
+}));

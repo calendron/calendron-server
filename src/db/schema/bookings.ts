@@ -1,5 +1,6 @@
 import { pgTable, serial, uuid, timestamp, boolean } from 'drizzle-orm/pg-core';
 import { users } from './users';
+import { relations } from 'drizzle-orm';
 
 export const bookings = pgTable('bookings', {
   id: serial('id').primaryKey(),
@@ -12,3 +13,10 @@ export const bookings = pgTable('bookings', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow()
 });
+
+export const bookingsRelations = relations(bookings, ({ one }) => ({
+  user: one(users, {
+    fields: [bookings.userId],
+    references: [users.id]
+  })
+}));

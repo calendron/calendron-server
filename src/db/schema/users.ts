@@ -10,6 +10,9 @@ import {
 } from 'drizzle-orm/pg-core';
 import { profiles } from './profiles';
 import { sessions } from './sessions';
+import { availabilities } from './availabilities';
+import { events } from './events';
+import { bookings } from './bookings';
 
 export const userRoleEnum = pgEnum('role_enum', [
   'super_admin',
@@ -44,5 +47,16 @@ export const userRelations = relations(users, ({ one, many }) => ({
     fields: [users.id],
     references: [profiles.userId]
   }),
-  sessions: many(sessions)
+  sessions: many(sessions, {
+    relationName: 'userSessions'
+  }),
+  bookings: many(bookings, {
+    relationName: 'userBookings'
+  }),
+  events: many(events, {
+    relationName: 'userEvents'
+  }),
+  availabilities: many(availabilities, {
+    relationName: 'userAvailabilities'
+  })
 }));

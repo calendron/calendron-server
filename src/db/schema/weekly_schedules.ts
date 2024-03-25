@@ -9,6 +9,7 @@ import {
 } from 'drizzle-orm/pg-core';
 import { users } from './users';
 import { availabilities } from './availabilities';
+import { relations } from 'drizzle-orm';
 
 export const dayNameEnum = pgEnum('day_name_enum', [
   'sunday',
@@ -35,3 +36,17 @@ export const weeklySchedules = pgTable('weekly_schedules', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow()
 });
+
+export const weeklySchedulesRelations = relations(
+  weeklySchedules,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [weeklySchedules.userId],
+      references: [users.id]
+    }),
+    availability: one(availabilities, {
+      fields: [weeklySchedules.availabilityId],
+      references: [availabilities.id]
+    })
+  })
+);

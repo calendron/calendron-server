@@ -9,6 +9,9 @@ import {
   json
 } from 'drizzle-orm/pg-core';
 import { users } from './users';
+import { relations } from 'drizzle-orm';
+import { dateOverridesSlots } from './date_overrides_slots';
+import { weeklySchedules } from './weekly_schedules';
 
 export const availabilitiesStatusEnum = pgEnum('availabilities_status_enum', [
   'active',
@@ -31,3 +34,19 @@ export const availabilities = pgTable('availabilities', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow()
 });
+
+export const availabilitiesRelations = relations(
+  availabilities,
+  ({ one, many }) => ({
+    user: one(users, {
+      fields: [availabilities.userId],
+      references: [users.id]
+    }),
+    dateOverridesSlots: many(dateOverridesSlots, {
+      relationName: 'availabilityDateOverridesSlots'
+    }),
+    weeklySchedules: many(weeklySchedules, {
+      relationName: 'availabilityWeeklySchedules'
+    })
+  })
+);

@@ -1,6 +1,7 @@
 import { pgTable, serial, uuid, timestamp, boolean } from 'drizzle-orm/pg-core';
 import { users } from './users';
 import { weeklySchedules } from './weekly_schedules';
+import { relations } from 'drizzle-orm';
 
 export const WeeklySchedulesSlots = pgTable('weekly_schedules_slots', {
   id: serial('id').primaryKey(),
@@ -18,3 +19,17 @@ export const WeeklySchedulesSlots = pgTable('weekly_schedules_slots', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow()
 });
+
+export const weeklySchedulesSlotsRelations = relations(
+  WeeklySchedulesSlots,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [WeeklySchedulesSlots.userId],
+      references: [users.id]
+    }),
+    weeklySchedules: one(weeklySchedules, {
+      fields: [WeeklySchedulesSlots.weeklySchedulesId],
+      references: [weeklySchedules.id]
+    })
+  })
+);

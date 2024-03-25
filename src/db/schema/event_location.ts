@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { pgEnum, pgTable, serial, text, uuid } from 'drizzle-orm/pg-core';
 
 export const eventLocationsEnum = pgEnum('event_locations_enum', [
