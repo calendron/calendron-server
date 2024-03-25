@@ -17,13 +17,20 @@ export const userRoleEnum = pgEnum('role_enum', [
   'user'
 ]);
 
+export const accountStatusEnum = pgEnum('account_status_enum', [
+  'active',
+  'inactive',
+  'suspended',
+  'banned'
+]);
+
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   uuid: uuid('uuid').defaultRandom(),
   email: text('email').notNull().unique(),
   password: text('password').notNull(),
   role: userRoleEnum('role').notNull().default('user'),
-  secretKey: text('secret_key'),
+  status: accountStatusEnum('status').notNull().default('active'),
   emailVerified: boolean('email_verified').notNull().default(false),
   emailVerifiedAt: timestamp('email_verified_at'),
   deleted: boolean('deleted').notNull().default(false),

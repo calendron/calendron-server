@@ -25,7 +25,6 @@ type User = {
   uuid: string | null;
   password: string;
   role: 'super_admin' | 'admin' | 'user';
-  secretKey: string | null;
   emailVerified: boolean;
   emailVerifiedAt: Date | null;
   deleted: boolean;
@@ -34,7 +33,6 @@ type User = {
   updatedAt: Date;
   profile: Profile;
   sessions: Sessions[];
-  // authCodes: AuthCodes[];
 };
 
 type Profile = {
