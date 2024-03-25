@@ -7,3 +7,4 @@ dist
 *.spec.ts
 *.test.ts
 jest.config.js
+drizzle.config.ts
