@@ -33,8 +33,7 @@ export const authMiddleware = async (
     const userExists = await db.query.users.findFirst({
       with: {
         profile: true,
-        sessions: true,
-        authCodes: true
+        sessions: true
       },
       where: eq(users.email, email)
     });

@@ -7,7 +7,7 @@ import { eq } from 'drizzle-orm';
 
 export const getAllUserSessions = asyncHandler(
   async (req: Request, res: Response) => {
-    const sessions = await req.user?.sessions;
+    const sessions = req.user?.sessions;
     return res.status(200).json(new ApiResponse(200, sessions));
   }
 );
