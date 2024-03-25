@@ -6,7 +6,7 @@ import {
   serial,
   text,
   timestamp,
-  uuid,
+  uuid
 } from 'drizzle-orm/pg-core';
 import { profiles } from './profiles';
 import { sessions } from './sessions';
@@ -14,7 +14,7 @@ import { sessions } from './sessions';
 export const userRoleEnum = pgEnum('role_enum', [
   'super_admin',
   'admin',
-  'user',
+  'user'
 ]);
 
 export const users = pgTable('users', {
@@ -29,13 +29,13 @@ export const users = pgTable('users', {
   deleted: boolean('deleted').notNull().default(false),
   deletedAt: timestamp('deleted_at'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow()
 });
 
 export const userRelations = relations(users, ({ one, many }) => ({
   profile: one(profiles, {
     fields: [users.id],
-    references: [profiles.userId],
+    references: [profiles.userId]
   }),
-  sessions: many(sessions),
+  sessions: many(sessions)
 }));

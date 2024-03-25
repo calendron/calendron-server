@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { authMiddleware } from '../middleware/auth.middlware';
 import {
   clearSingleSession,
-  getAllUserSessions,
+  getAllUserSessions
 } from '../controllers/session.controller';
 
 const router = Router();

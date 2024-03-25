@@ -1,14 +1,12 @@
-import { Request, Response, NextFunction } from "express";
-
-import express from "express";
-import ApiError from "../helper/ApiError";
-import winstonLogger from "../utils/logger/winston";
+import { Request, Response, NextFunction } from 'express';
+import ApiError from '../helper/ApiError';
+import winstonLogger from '../utils/logger/winston';
 
 const errorHandler = (
   err: any,
   _: Request,
   res: Response,
-  __: NextFunction,
+  __: NextFunction
 ) => {
   let error = err;
   if (!error) {
@@ -18,16 +16,16 @@ const errorHandler = (
     const statusCode = error.statusCode ? 400 : 500;
 
     // set a message from native Error instance or a custom one
-    const message = error.message || "Something went wrong";
-    console.log("statusCode", statusCode);
-    console.log("message", message);
+    const message = error.message || 'Something went wrong';
+    console.log('statusCode', statusCode);
+    console.log('message', message);
 
     error = new ApiError(statusCode, message, error?.errors || [], err.stack);
   }
   const response = {
     ...error,
     message: error.message,
-    ...(process.env.NODE_ENV === "development" ? { stack: error.stack } : {}), // Error stack traces should be visible in development for debugging
+    ...(process.env.NODE_ENV === 'development' ? { stack: error.stack } : {}) // Error stack traces should be visible in development for debugging
   };
 
   winstonLogger.error(`${error.message}`);

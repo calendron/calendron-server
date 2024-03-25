@@ -1,6 +1,6 @@
-import { validationResult } from "express-validator";
-import { Request, Response, NextFunction } from "express";
-import ApiError from "../helper/ApiError";
+import { validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+import ApiError from '../helper/ApiError';
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -14,7 +14,7 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
   // 422: Unprocessable Entity
   throw new ApiError(
     422,
-    "Received data is not valid",
-    extractedErrors as never[],
+    'Received data is not valid',
+    extractedErrors as never[]
   );
 };
