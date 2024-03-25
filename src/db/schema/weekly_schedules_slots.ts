@@ -3,7 +3,7 @@ import { users } from './users';
 import { weeklySchedules } from './weekly_schedules';
 import { relations } from 'drizzle-orm';
 
-export const WeeklySchedulesSlots = pgTable('weekly_schedules_slots', {
+export const weeklySchedulesSlots = pgTable('weekly_schedules_slots', {
   id: serial('id').primaryKey(),
   uuid: uuid('uuid').defaultRandom(),
   userId: serial('user_id')
@@ -21,14 +21,14 @@ export const WeeklySchedulesSlots = pgTable('weekly_schedules_slots', {
 });
 
 export const weeklySchedulesSlotsRelations = relations(
-  WeeklySchedulesSlots,
+  weeklySchedulesSlots,
   ({ one }) => ({
     user: one(users, {
-      fields: [WeeklySchedulesSlots.userId],
+      fields: [weeklySchedulesSlots.userId],
       references: [users.id]
     }),
     weeklySchedules: one(weeklySchedules, {
-      fields: [WeeklySchedulesSlots.weeklySchedulesId],
+      fields: [weeklySchedulesSlots.weeklySchedulesId],
       references: [weeklySchedules.id]
     })
   })

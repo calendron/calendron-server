@@ -47,16 +47,8 @@ export const userRelations = relations(users, ({ one, many }) => ({
     fields: [users.id],
     references: [profiles.userId]
   }),
-  sessions: many(sessions, {
-    relationName: 'userSessions'
-  }),
-  bookings: many(bookings, {
-    relationName: 'userBookings'
-  }),
-  events: many(events, {
-    relationName: 'userEvents'
-  }),
-  availabilities: many(availabilities, {
-    relationName: 'userAvailabilities'
-  })
+  sessions: many(sessions),
+  bookings: many(bookings),
+  events: many(events),
+  availabilities: many(availabilities)
 }));

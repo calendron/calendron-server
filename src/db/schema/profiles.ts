@@ -20,6 +20,7 @@ export const profiles = pgTable('profiles', {
   countryCode: text('country_code'),
   phoneNumber: text('phone_number'),
   gender: genderEnum('gender').notNull(),
+  dob: timestamp('dob').notNull(),
   userId: serial('user_id')
     .references(() => users.id)
     .notNull(),

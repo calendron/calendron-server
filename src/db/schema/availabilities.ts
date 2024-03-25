@@ -42,11 +42,7 @@ export const availabilitiesRelations = relations(
       fields: [availabilities.userId],
       references: [users.id]
     }),
-    dateOverridesSlots: many(dateOverridesSlots, {
-      relationName: 'availabilityDateOverridesSlots'
-    }),
-    weeklySchedules: many(weeklySchedules, {
-      relationName: 'availabilityWeeklySchedules'
-    })
+    dateOverridesSlots: many(dateOverridesSlots),
+    weeklySchedules: many(weeklySchedules)
   })
 );

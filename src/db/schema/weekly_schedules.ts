@@ -10,6 +10,7 @@ import {
 import { users } from './users';
 import { availabilities } from './availabilities';
 import { relations } from 'drizzle-orm';
+import { weeklySchedulesSlots } from './weekly_schedules_slots';
 
 export const dayNameEnum = pgEnum('day_name_enum', [
   'sunday',
@@ -39,7 +40,7 @@ export const weeklySchedules = pgTable('weekly_schedules', {
 
 export const weeklySchedulesRelations = relations(
   weeklySchedules,
-  ({ one }) => ({
+  ({ one, many }) => ({
     user: one(users, {
       fields: [weeklySchedules.userId],
       references: [users.id]
@@ -47,6 +48,7 @@ export const weeklySchedulesRelations = relations(
     availability: one(availabilities, {
       fields: [weeklySchedules.availabilityId],
       references: [availabilities.id]
-    })
+    }),
+    weeklySchedulesSlots: many(weeklySchedulesSlots)
   })
 );
