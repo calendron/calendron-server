@@ -1,6 +1,6 @@
 import dotnev from 'dotenv';
-import config from './config/index';
 dotnev.config();
+import config from './config/index';
 
 import app from './app';
 
